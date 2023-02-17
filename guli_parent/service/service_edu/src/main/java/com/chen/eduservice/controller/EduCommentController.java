@@ -10,6 +10,7 @@ import com.chen.eduservice.client.UcenterClient;
 import com.chen.eduservice.entity.EduComment;
 import com.chen.eduservice.service.EduCommentService;
 import io.swagger.annotations.Api;
+import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -48,8 +49,9 @@ public class EduCommentController {
         //调用远程服务：通过request请求，解析token获取用户id
         R r = ucenterClient.getMemberInfo(request.getHeader("token"));
         if (r.getCode() == 20000){
-            //UcenterMemberTo ucenterMemberTo = r.getData("userInfo", new TypeReference<UcenterMemberTo>() {});
-            UcenterMemberTo ucenterMemberTo = (UcenterMemberTo)r.getData().get("userInfo");
+            /*ObjectMapper objectMapper = new ObjectMapper();
+            UcenterMemberTo ucenterMemberTo = objectMapper.convertValue(r.getData().get("userInfo"), UcenterMemberTo.class);*/
+            UcenterMemberTo ucenterMemberTo = r.getData("userInfo", new TypeReference<UcenterMemberTo>() {});
             eduComment.setMemberId(ucenterMemberTo.getId());
             eduComment.setAvatar(ucenterMemberTo.getAvatar());
             eduComment.setNickname(ucenterMemberTo.getNickname());

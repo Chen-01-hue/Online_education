@@ -73,19 +73,19 @@ public class R {
     /**
      * @param key 获取指定key的名字
      */
-   /* public <T> T getData(String key, TypeReference<T> typeReference){
+    public <T> T getData(String key, TypeReference<T> typeReference){
         // get("data") 默认是map类型 所以再由map转成string再转json
         Object data = this.data.get(key);
         return JSON.parseObject(JSON.toJSONString(data), typeReference);
-    }*/
+    }
     /**
      * 复杂类型转换 TypeReference
      */
-    /*public <T> T getData(TypeReference<T> typeReference){
+    public <T> T getData(TypeReference<T> typeReference){
         // get("data") 默认是map类型 所以再由map转成string再转json
         Object data = this.data.get("data");
         return JSON.parseObject(JSON.toJSONString(data), typeReference);
-    }*/
+    }
 
 }
 
